@@ -2,15 +2,16 @@ from django.shortcuts import render,get_object_or_404,redirect
 from blog.models import Post, Comment, Tag
 from django.utils import timezone
 from blog.forms import CommentForm
+from django.views.decorators.cache import cache_page
+from django.views.decorators.vary import vary_on_cookie
 import logging
 logger = logging.getLogger(__name__)
 # Create your views here.
 
 def index(request):
-  posts = Post.objects.filter(published_at__lte=timezone.now())
- # print('\n\nPOST = {}\n\n'.format(posts))
-  logger.debug('Got %d posts',len(posts))
-  return render(request,'blog/index.html',{'posts':posts})
+    posts = Post.objects.filter(published_at__lte=timezone.now())
+    logger.debug("Got %d posts", len(posts))
+    return render(request, "blog/index.html", {"posts": posts})
 
 def post_detail(request,slug):
   post = get_object_or_404(Post,slug=slug)
