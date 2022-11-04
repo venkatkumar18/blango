@@ -50,6 +50,7 @@ class Dev(Configuration):
       'blog',
       'crispy_forms',
       'debug_toolbar',
+      'blango_auth'
   ]
 
   MIDDLEWARE = [
@@ -118,6 +119,7 @@ class Dev(Configuration):
           'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
       },
   ]
+  AUTH_USER_MODEL = 'blango_auth.User'
 
   LOGGING = {
     "version": 1,
