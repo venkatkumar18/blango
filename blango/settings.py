@@ -174,7 +174,7 @@ class Dev(Configuration):
 
   DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-
+  EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
 class Prod(Dev):
   DEBUG = False
   SECRET_KEY = values.SecretValue()
